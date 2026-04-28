@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: MLP vs Perceptrón - Caso XOR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #8b5cf6;
+            --secondary: #0ea5e9;
+            --accent: #f43f5e;
+            --success: #10b981;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        /* --- Header --- */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(to bottom, rgba(139, 92, 246, 0.1), transparent);
+            border-radius: 24px;
+            margin-bottom: 30px;
+        }
+
+        .university-info { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--secondary); margin-bottom: 10px; }
+        h1 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 800; margin-bottom: 10px; }
+
+        /* --- Grid Principal --- */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
+
+        .span-12 { grid-column: span 12; }
+        .span-7 { grid-column: span 7; }
+        .span-5 { grid-column: span 5; }
+
+        /* --- Secciones de Contenido --- */
+        .icon-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .icon-header i { font-size: 1.5rem; color: var(--primary); }
+        
+        h2, h3 { color: var(--text-main); }
+        p { color: var(--text-dim); margin-bottom: 15px; font-size: 0.95rem; }
+
+        /* --- Comparativa XOR Visual --- */
+        .comparative-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .model-status {
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .status-fail { border-left: 4px solid var(--accent); }
+        .status-success { border-left: 4px solid var(--success); }
+
+        /* --- Métricas Dinámicas --- */
+        .metric-group { margin-bottom: 15px; }
+        .metric-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 5px; }
+        .progress-bar { background: #334155; height: 8px; border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--primary); transition: width 1s ease-in-out; }
+        .fill-success { background: var(--success); }
+        .fill-fail { background: var(--accent); }
+
+        /* --- Tabla de Integrantes --- */
+        .team-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .member-tag {
+            background: rgba(255,255,255,0.05);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- Conclusión Highlight --- */
+        .conclusion-card {
+            background: linear-gradient(135deg, #1e1b4b, #1e293b);
+            border: 1px solid var(--primary);
+            position: relative;
+        }
+
+        .btn-repo {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        /* --- Mobile Optimization --- */
+        @media (max-width: 850px) {
+            .span-7, .span-5 { grid-column: span 12; }
+            .comparative-box { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="university-info">Facultad de Ingeniería • Sistemas e Informática</div>
+        <h1>El Dilema XOR: MLP vs Perceptrón</h1>
+        <p>Informe de Control de Versiones - Cusco 2026</p>
+    </header>
+
+    <div class="main-grid">
+        
+        <section class="card span-12">
+            <div class="icon-header">
+                <i class="fas fa-brain"></i>
+                <h2>Introducción al Problema</h2>
+            </div>
+            <p>El problema XOR es fundamental en IA porque demuestra que un modelo lineal no puede separar datos que no son linealmente independientes. Es el punto donde el aprendizaje profundo comienza a ser necesario.</p>
+        </section>
+
+        <section class="card span-7">
+            <div class="icon-header">
+                <i class="fas fa-layer-group"></i>
+                <h2>Desarrollo Experimental</h2>
+            </div>
+            <p>Se compararon dos arquitecturas para resolver la misma tabla de verdad:</p>
+            
+            <div class="comparative-box">
+                <div class="model-status status-fail">
+                    <i class="fas fa-times-circle" style="color: var(--accent);"></i>
+                    <h4>Perceptrón Simple</h4>
+                    <p style="font-size: 0.8rem;">1 Capa. Clasificador lineal. Falla al separar (0,0)-(1,1) de (0,1)-(1,0).</p>
+                </div>
+                <div class="model-status status-success">
+                    <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                    <h4>Perceptrón Multicapa</h4>
+                    <p style="font-size: 0.8rem;">2 Capas Ocultas (2 y 3 neuronas). Funciones no lineales. Éxito total.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card span-5">
+            <div class="icon-header">
+                <i class="fas fa-chart-bar"></i>
+                <h2>Métricas de Rendimiento</h2>
+            </div>
+            
+            <div class="metric-group">
+                <div class="metric-label"><span>Accuracy (MLP)</span><span>100%</span></div>
+                <div class="progress-bar"><div class="progress-fill fill-success" style="width: 100%;"></div></div>
+            </div>
+
+            <div class="metric-group">
+                <div class="metric-label"><span>Accuracy (Simple)</span><span>50%</span></div>
+                <div class="progress-bar"><div class="progress-bar"><div class="progress-fill fill-fail" style="width: 50%;"></div></div></div>
+            </div>
+
+            <div class="metric-group">
+                <div class="metric-label"><span>F1-Score (MLP)</span><span>1.0</span></div>
+                <div class="progress-bar"><div class="progress-fill fill-success" style="width: 100%;"></div></div>
+            </div>
+            <p style="font-size: 0.8rem; margin-top: 10px;">* El MLP es 100% confiable al predecir la clase 1.</p>
+        </section>
+
+        <section class="card span-7 conclusion-card">
+            <div class="icon-header">
+                <i class="fas fa-quote-left"></i>
+                <h2>Conclusión Teórica</h2>
+            </div>
+            <p>La incorporación de <strong>capas ocultas</strong> y <strong>activación no lineal</strong> permite transformar el espacio de características. Mientras el modelo simple se queda atrapado en una dimensión, el MLP genera fronteras de decisión complejas mediante la combinación de hiperplanos.</p>
+            <a href="https://github.com/Los-Full-Stack/ConstruccionSoftware-MLP" class="btn-repo" target="_blank">
+                <i class="fab fa-github"></i> Ver Repositorio
+            </a>
+        </section>
+
+        <section class="card span-5">
+            <div class="icon-header">
+                <i class="fas fa-users"></i>
+                <h2>Equipo de Trabajo</h2>
+            </div>
+            <div class="team-list">
+                <span class="member-tag">Guido Villamonte</span>
+                <span class="member-tag">Efrain Portilla</span>
+                <span class="member-tag">Jhoset Mendoza</span>
+                <span class="member-tag">Ivan Ortiz</span>
+                <span class="member-tag">Ayrthon Roca</span>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.8rem;">
+                <strong>Docente:</strong> Hugo Espetia Huamanga<br>
+                <strong>Institución:</strong> UNSAAC - Cusco
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<script>
+    // Pequeña animación de entrada para las barras de progreso
+    window.addEventListener('DOMContentLoaded', () => {
+        const fills = document.querySelectorAll('.progress-fill');
+        fills.forEach(fill => {
+            const width = fill.style.width;
+            fill.style.width = '0';
+            setTimeout(() => {
+                fill.style.width = width;
+            }, 300);
+        });
+    });
+</script>
+
+</body>
+</html>
